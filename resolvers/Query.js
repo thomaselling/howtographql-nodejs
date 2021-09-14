@@ -78,7 +78,7 @@ async function feed(parent, args, context, info) {
 
   const count = await context.prisma.link.count({ where })
   hasPreviousPage = !!args.cursor
-  hasNextPage = links.length > first
+  hasNextPage = links.length < count
 
   const last = links[links.length - 1]
   const pageInfo = {
