@@ -72,7 +72,7 @@ async function feed(parent, args, context, info) {
   else {
     links = await context.prisma.link.findMany({
       where,
-      take: take,
+      take: first,
     })
   }
 
