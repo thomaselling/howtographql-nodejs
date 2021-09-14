@@ -1,0 +1,42 @@
+type Query {
+  info: String!
+  feed(filter: String, take: Int, cursor: String): Feed!
+}
+
+type Feed {
+  links: [Link!]!
+  count: Int!
+  pageInfo: PageInfo!
+}
+
+type PageInfo {
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+  startCursor: String!
+  endCursor: String!
+}
+
+type Mutation {
+  post(url: String!, description: String!): Link!
+  signup(email: String!, password: String!, name: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+}
+
+type Link {
+  id: ID!
+  description: String!
+  url: String!
+  postedBy: User
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  links: [Link!]!
+}
